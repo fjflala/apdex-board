@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "watch": "NODE_ENV=development webpack --watch",
-    "start:dev": "NODE_ENV=development http-server ./dist",
+    "start:dev": "NODE_ENV=development http-server ./dist -a localhost -c-1 -p 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,7 +21,9 @@
   "homepage": "https://github.com/fjflala/apdex-board#readme",
   "devDependencies": {
     "@babel/core": "^7.2.2",
+    "axios": "^0.18.0",
     "babel-loader": "^8.0.5",
+    "babel-preset-env": "^2.0.0-alpha.20",
     "clean-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.6.0",
     "http-server": "^0.11.1",
