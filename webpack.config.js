@@ -13,7 +13,13 @@ const copyPlugin = new CopyWebpackPlugin([
     to: './index.html',
     force: true,
     flatten: true,
-  }
+  },
+  {
+    from: './src/static/host-app-data.json',
+    to: './host-app-data.json',
+    force: true,
+    flatten: true,
+  },
 ]);
 
 /**
