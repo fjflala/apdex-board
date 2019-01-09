@@ -8,7 +8,7 @@ import renderDOM from './utils/renderDom';
 /**
  * Import Styles
  */
-// import './styles/main.scss';
+import './styles/main.scss';
 
 /**
  * Create new instance of Service
