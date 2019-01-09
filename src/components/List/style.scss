@@ -1,0 +1,22 @@
+.ui-list {
+  padding: 0;
+
+  &__item {
+    list-style: none;
+    padding: 0;
+    font-size: $font-size-base;
+    color: $gray-100;
+    margin-bottom: $gutter-base / 2;
+    position: relative;
+    padding-left: $gutter-base + 10;
+    line-height: $line-height-base;
+
+    &:before {
+      content: attr(data-apdex);
+      position: absolute;
+      left: 0;
+      font-size: $font-size-s;
+      line-height: $line-height-s;
+    }
+  }
+}
