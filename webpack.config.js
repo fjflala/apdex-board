@@ -3,6 +3,7 @@
  */
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 /**
  * Webpack Copy plugin config
@@ -31,12 +32,20 @@ const pathsToClean = [
 const cleanPlugin = new CleanWebpackPlugin(pathsToClean);
 
 /**
+ * Styles config
+ */
+
+const styleExtractPlugin = new ExtractTextPlugin({
+  filename: 'main.css',
+});
+
+/**
  * Export
  */
 module.exports = {
   mode: process.env.NODE_ENV,
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.scss'],
   },
   module: {
     rules: [
@@ -44,11 +53,22 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-      }
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: styleExtractPlugin.extract({
+          use: [
+            'css-loader',
+            'sass-loader',
+          ],
+        }),
+      },
     ],
   },
   plugins: [
     copyPlugin,
     cleanPlugin,
+    styleExtractPlugin,
   ],
 };
