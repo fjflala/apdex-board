@@ -1,0 +1,25 @@
+$card-width: 375px !default;
+
+.ui-card {
+  background-color: $white;
+  margin-bottom: $gutter-base;
+  padding: $gutter-base;
+  display: flex;
+	flex-direction: row;
+  
+  &__title {
+    font-size: $font-size-base;
+    margin: 0 0 $gutter-s;
+    line-height: $line-height-base;
+  }
+  
+  &--grid {
+    width: 100%;
+    max-width: $card-width;
+    display: inline-block;
+
+    &:nth-child(odd) {
+      margin-right: $gutter-base;
+    }
+  }
+}
