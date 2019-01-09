@@ -2,6 +2,8 @@
  * Module dependencies
  */
 import axios from 'axios';
+import sortByApdex from '../sortByApdex';
+import mapAppsByHost from '../mapAppsByHost';
 
 /**
  * Represents a service
@@ -23,6 +25,9 @@ export default class Service {
    * @returns {Promise} - The response of the http request
    */
   getData(path = '') {
-    return this.restclient.get(path);
+    return this.restclient.get(path)
+      .then(response => response.data)
+      .then(sortByApdex)
+      .then(mapAppsByHost);
   }
 }
