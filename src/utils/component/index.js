@@ -14,8 +14,8 @@ export default class Component {
    * @property {Props} props
    * @property {object} state
    */
-  constructor(props) {
-    this.state = {};
+  constructor(props, state) {
+    this.state = state || {};
     this.props = props;
      
     if (!this.render && typeof this.render !== 'function') {
@@ -28,15 +28,18 @@ export default class Component {
    * @param {object} newState 
    */
   setState(newState) {
-    if (!newState || this.state === newState) {
-      return;
-    }
-
     if (newState && typeof newState !== 'object') {
       throw new Error('State param must be an Object');
     }
 
-    this.state = newState;
-    this.render(); 
+    if (!newState || this.state === newState) {
+      return;
+    }
+    
+    if (this.state !== newState) {
+      this.render();
+    }
+
+    this.state = newState; 
   }
 }
