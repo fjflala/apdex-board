@@ -1,3 +1,17 @@
+/**
+* Helpers
+*/
+@import './helpers/variables.scss';
+@import './helpers/normalize.scss';
+
 body {
-  background-color: red;
+  background-color: $gray-200;
+  font-family: $font-family;
 }
+
+/**
+* Components
+*/
+@import '../components/App/style.scss';
+@import '../components/Card/style.scss';
+@import '../components/List/style.scss';

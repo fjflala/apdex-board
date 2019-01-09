@@ -1,14 +1,17 @@
 // Colors
 $black: #000 !default;
-$grey-100: #4a4a4a !default;
-$grey-200: #f5f5f5 !default;
+$white: #fff !default;
+$gray-100: #4a4a4a !default;
+$gray-200: #f5f5f5 !default;
 
 // Gutters
 $gutter-base: 30px !default;
 $gutter-s: 23px !default;
 
 // Fonts
-$font-family: 'HelveticaNeue', sans-serif !default;
+// Font-family: Helvetica is not standard, and use it as font-face needs license.
+$font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+Helvetica, Arial, "Lucida Grande", sans-serif !default;
 $font-size-s: 13px !default;
 $font-size-base: 16px !default;
 $font-size-l: 18px !default;
