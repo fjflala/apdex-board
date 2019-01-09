@@ -1,0 +1,11 @@
+$container-width: 840px !default;
+
+.app {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: $gutter-base;
+
+  display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}

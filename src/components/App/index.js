@@ -8,13 +8,13 @@ export default class App extends Component {
     const {
       data,
     } = this.state;
-    return `<main>
+
+    return `<main class="app">
       ${Object.keys(data).map(key => (
         new Card({
-          children: new List({
-            hostName: key,
-            data: data[key],
-          }),
+          className: 'ui-card--grid',
+          hostName: key,
+          data: data[key],
         }).render())
       ).join('')}
     </main>`;
