@@ -20,7 +20,8 @@ export default class Service {
     });
   }
   /**
-   * Get the data from the json
+   * Get the data from the JSON
+   * Transform the data from an array into an object
    * @param {string} path - The path
    * @returns {Promise} - The response of the http request
    */
