@@ -6,6 +6,11 @@ import App from './components/App';
 import renderDOM from './utils/renderDom';
 
 /**
+ * Import Styles
+ */
+// import './styles/main.scss';
+
+/**
  * Create new instance of Service
  */
 const service = new Service();
@@ -13,7 +18,6 @@ const service = new Service();
 /**
  * Create new instance of App
  */
-const app = new App();
 
 /**
  * Call getData method from service
@@ -21,7 +25,7 @@ const app = new App();
  */
 service.getData()
   .then((data) => {
-    app.setState({data});
+    const app = new App(null, {data});
 
     renderDOM(app, document.querySelector('#root'));
   });
