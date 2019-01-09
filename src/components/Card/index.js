@@ -1,5 +1,11 @@
+/**
+ * Module dependencies
+ */
 import Component from '../../utils/component';
 
+/**
+ * Card component
+ */
 export default class Card extends Component {
   render() {
     const {
