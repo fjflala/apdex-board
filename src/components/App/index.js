@@ -5,6 +5,11 @@ import Dom from '../../utils/dom';
 import Component from '../../utils/component';
 import Card from '../Card';
 import { stateManager } from '../../utils/stateManager';
+import {
+  REMOVE_APP_FROM_HOST,
+  ADD_APP_TO_HOSTS,
+} from '../../utils/stateManager/actions';
+
 
 /**
  * APP component
@@ -23,6 +28,84 @@ export default class App extends Component {
       this.forceUpdate();
     });
   }
+  
+  /**
+   * addAppToHosts method
+   * @param {array} hosts 
+   * @param {object} app 
+   * @param {string} app.name
+   * @param {number} app.version
+   * @param {number} app.apdex
+   */
+  addAppToHosts(hosts, app) {
+    if (!hosts && !Array.isArray(hosts)) {
+      throw new Error('Hosts param must be an array');
+    }
+
+    stateManager.dispatch(ADD_APP_TO_HOSTS, {
+      app,
+      hosts,
+    });
+  }
+  /**
+   * removeAppFromHost will dispatch an event 
+   * @param {array} hosts - array of the hosts name
+   * @param {object} app 
+   * @param {string} app.name
+   * @param {number} app.version
+   * @param {number} app.apdex
+   */
+  removeAppFromHosts(hosts, app) {
+    if (!hosts && !Array.isArray(hosts)) {
+      throw new Error('Hosts param must be an array');
+    }
+
+    const {
+      name,
+      version,
+      apdex,
+    } = app;
+
+    if (confirm(`${name}:
+      Version: ${version}
+      Apdex: ${apdex}.
+      Do you want to remove this app from ${hosts.join(', ')}?
+    `)) {
+      stateManager.dispatch(REMOVE_APP_FROM_HOST, {
+        name,
+        version,
+        apdex,
+        hosts,
+      });
+    }
+  }
+
+  /**
+   * getTopAppsByHost method
+   * @param {string} hostName - The host name
+   * @param {number} limit - Limit number of apps to show
+   * @param {number} offset - Offset could work as a paginator
+   */
+  getTopAppsByHost(hostName, limit = 25, offset = 0) {
+    if (!hostName && typeof hostName !== 'string') {
+      throw new Error('hostName param must be defined and it must be a string');
+    }
+
+    let data;
+
+    if(this.state && this.state.data) {
+      data = this.state.data;
+    } else {
+      data = stateManager.getState().data;
+    }
+
+    if (data[hostName]) {
+      const topApsByHost = data[hostName].slice(offset, limit);
+      return topApsByHost;
+    }
+
+    return [];
+  }
 
   render() {
     const {
@@ -31,9 +114,10 @@ export default class App extends Component {
   
     return (
       <main className="app">
-        {data && Object.keys(data).map(hostName => {
+        {data && Object.keys(data).map((hostName) => {
+          const topApsByHost = this.getTopAppsByHost(hostName, 5, 0);
           return (
-            <Card title={hostName} data={data[hostName]} />
+            <Card title={hostName} data={topApsByHost} onClickApp={this.removeAppFromHosts} />
           )
         })}
       </main>
