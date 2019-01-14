@@ -4,7 +4,7 @@
 import Dom from '../../utils/dom';
 import Component from '../../utils/component';
 import Card from '../Card';
-import { stateManager } from '../..';
+import { stateManager } from '../../utils/stateManager';
 
 /**
  * APP component
