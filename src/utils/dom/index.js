@@ -1,7 +1,7 @@
 /**
  * Module dependencies
  */
-import Component from "../_component";
+import Component from "../component";
 
 const handlerChildren = (child, fragment) => {
   if (child) {
@@ -27,7 +27,7 @@ const handlerChildren = (child, fragment) => {
     ) {
       fragment.appendChild(child.render());
     } else if (process.env.NODE_ENV === 'development') {
-      console.log(child, 'Is not a Node element')
+      console.error(child, 'Is not a Node element')
     }
   }
 };
@@ -54,9 +54,12 @@ export default {
       } else if(prop.startsWith('on')) {
         const evt = prop.slice(2).toLowerCase();
         element.removeEventListener(evt, attr[prop]);
-        element.addEventListener(evt, attr[prop])
+        element.addEventListener(evt, attr[prop]);
+        element.listeners = element.listeners ? 
+          [...element.listeners, { evt, cb: attr[prop]}] : 
+          [{ evt, cb: attr[prop]}];
       } else {
-        element.setAttribute(prop, attr[prop])
+        element.setAttribute(prop, attr[prop]);
       }
     });
   
