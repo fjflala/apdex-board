@@ -1,7 +1,8 @@
+import renderDom from "../renderDom";
+
 /**
  * Represents a component
  */
-
 /**
  * @typedef Props
  * @type {object}
@@ -20,7 +21,19 @@ export default class Component {
      
     if (!this.render && typeof this.render !== 'function') {
       throw new Error('A component must have a render function');
+    } else {
+      Component.render(this);
+      this.componentDidMount();
     }
+  }
+
+  /**
+   * Render method public.
+   * @param {*} _this 
+   */
+  static render(_this) {
+    _this.componentWillMount();
+    return _this.render();
   }
 
   /**
@@ -28,18 +41,27 @@ export default class Component {
    * @param {object} newState 
    */
   setState(newState) {
-    if (newState && typeof newState !== 'object') {
-      throw new Error('State param must be an Object');
-    }
+    this.state = newState;
+  }
 
-    if (!newState || this.state === newState) {
-      return;
-    }
-    
-    if (this.state !== newState) {
-      this.render();
-    }
+  /**
+   * Will execute before Mount
+   */
+  componentWillMount() {
+    return null;
+  }
 
-    this.state = newState; 
+  /**
+   * Will execute after Mount
+   */
+  componentDidMount() {
+    return null;
+  }
+
+  /**
+   * Use to update the component view.
+   */
+  forceUpdate() {
+    renderDom();
   }
 }
