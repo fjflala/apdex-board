@@ -17,6 +17,9 @@ export default class Service {
     this.url = opts.url || './host-app-data.json';
     this.restclient = axios.create({
       baseURL: this.url,
+      headers: {
+        'content-encoding': 'gzip',
+      },
     });
   }
   /**
