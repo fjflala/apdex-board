@@ -4,11 +4,18 @@
 import Service from './utils/service';
 import App from './components/App';
 import renderDOM from './utils/renderDom';
-
+import StateManager from './utils/stateManager';
+import { REQUEST_SUCCESS, REMOVE_APP_FROM_HOST } from './utils/stateManager/actions';
+import Dom from './utils/dom';
 /**
  * Import Styles
  */
 import './styles/main.scss';
+
+/**
+ * Polyfill
+ */
+import '@babel/polyfill';
 
 /**
  * Create new instance of Service
@@ -16,16 +23,23 @@ import './styles/main.scss';
 const service = new Service();
 
 /**
- * Create new instance of App
+ * Create new instance of StateManager
  */
+export const stateManager = new StateManager();
 
-/**
+/*
  * Call getData method from service
- * Set the state of the app
+ * Dispatch REQUEST SUCCESS event to save data in stateManager
+ * Render App into the DOM
  */
 service.getData()
   .then((data) => {
-    const app = new App(null, {data});
-
-    renderDOM(app, document.querySelector('#root'));
+    stateManager.dispatch(REQUEST_SUCCESS, { data });
+    renderDOM(<App data={data} />, document.getElementById('root'));
   });
+
+/**
+ * Expose data API (stateManager)
+ */
+window.stateManager = stateManager;
+
