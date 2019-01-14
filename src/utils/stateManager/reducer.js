@@ -2,6 +2,7 @@ import {
   REQUEST_SUCCESS,
   REMOVE_APP_FROM_HOST,
   ADD_APP_TO_HOSTS,
+  CHANGE_VIEW_TYPE,
 } from './actions';
 
 export default function reducer(state = {}, eventName, payload) {
@@ -21,6 +22,9 @@ export default function reducer(state = {}, eventName, payload) {
         state.data[hostName] = state.data[hostName].sort((a, b) => b.apdex - a.apdex);
       });
 
+      return state;
+    case CHANGE_VIEW_TYPE:
+      state.showList = payload.showList;
       return state;
     default:
       return state;

@@ -13,20 +13,22 @@ export default class Card extends Component {
       title,
       data,
       onClickApp,
+      showList,
     } = this.props;
 
     return (
-      <div class={`ui-card ui-card--grid`}>
+      <div class={`ui-card ${showList ? '' : 'ui-card--grid'}`}>
         <h4 class="ui-card__title">{title}</h4>
         <div class="ui-card__content">
           <ul class="ui-list">
             {data && data.map((app, key) => (
                 <li
                   className="ui-list__item"
-                  onClick={() => onClickApp([title], app)}
                   data-apdex={app.apdex}
                 >
-                  {app.name}
+                  <button className="ui-list__button" onClick={() => onClickApp([title], app)}>
+                    {app.name}
+                  </button>
                 </li>
               )
             )}

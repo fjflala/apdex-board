@@ -4,8 +4,6 @@ $card-width: 375px !default;
   background-color: $white;
   margin-bottom: $gutter-base;
   padding: $gutter-base;
-  display: flex;
-	flex-direction: row;
   
   &__title {
     font-size: $font-size-base;
@@ -30,8 +28,6 @@ $card-width: 375px !default;
   &__item {
     list-style: none;
     padding: 0;
-    font-size: $font-size-base;
-    color: $gray-100;
     margin-bottom: $gutter-base / 2;
     position: relative;
     padding-left: $gutter-base + 10;
@@ -44,5 +40,15 @@ $card-width: 375px !default;
       font-size: $font-size-s;
       line-height: $line-height-s;
     }
+  }
+
+  &__button {
+    background: transparent;
+    border: 0;
+    text-align: left;
+    font-size: $font-size-base;
+    color: $gray-100;
+    cursor: pointer;
+    outline: none;
   }
 }

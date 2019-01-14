@@ -8,6 +8,7 @@ import { stateManager } from '../../utils/stateManager';
 import {
   REMOVE_APP_FROM_HOST,
   ADD_APP_TO_HOSTS,
+  CHANGE_VIEW_TYPE,
 } from '../../utils/stateManager/actions';
 
 
@@ -19,6 +20,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       data: props.data || {},
+      showList: false,
     };
   }
 
@@ -26,6 +28,7 @@ export default class App extends Component {
     stateManager.subscribe('app', (state) => {
       this.setState(state);
       this.forceUpdate();
+      document.getElementById('showList').checked = state.showList;
     });
   }
   
@@ -107,19 +110,39 @@ export default class App extends Component {
     return [];
   }
 
+  changeView() {
+    stateManager.dispatch(CHANGE_VIEW_TYPE, { showList: !this.state.showList });
+  }
+
   render() {
     const {
       data,
+      showList,
     } = this.state;
   
     return (
       <main className="app">
+        <header className="app__header">
+          <h1 className="app__title">Apps by Host</h1>
+          <span className="app__subtitle">for user averylongemailaddress@companyname.com</span>
+          <label for="showList" className="app__label">
+            <input
+              className="app__input"
+              type="checkbox" 
+              id="showList"
+              onChange={() => this.changeView()}
+            />
+            Show as list
+          </label>
+        </header>
+        <div className="app__card-container">
         {data && Object.keys(data).map((hostName) => {
           const topApsByHost = this.getTopAppsByHost(hostName, 5, 0);
           return (
-            <Card title={hostName} data={topApsByHost} onClickApp={this.removeAppFromHosts} />
+            <Card title={hostName} data={topApsByHost} onClickApp={this.removeAppFromHosts} showList={showList} />
           )
         })}
+        </div>
       </main>
     );
   }

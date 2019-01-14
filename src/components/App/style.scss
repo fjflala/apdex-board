@@ -7,5 +7,34 @@ $container-width: 840px !default;
 
   display: flex;
 	flex-flow: row wrap;
-	justify-content: space-between;
+  justify-content: space-between;
+  
+  &__title {
+    font-size: $font-size-xl;
+    display: inline;
+    padding-right: 5px;
+  }
+
+  &__subtitle {
+    font-size: $font-size-l;
+    padding-right: $gutter-base;
+  }
+
+  &__header {
+    padding-bottom: $gutter-base;
+  }
+
+  &__label {
+    cursor: pointer;
+    font-size: $font-size-s;    
+  }
+
+  &__input {
+    margin-right: 5px;    
+  }
+
+  &__card-container {
+    display: block;
+    width: 100%;
+  }
 }

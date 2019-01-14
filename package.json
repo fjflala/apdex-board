@@ -7,7 +7,7 @@
   "scripts": {
     "watch": "NODE_ENV=development webpack --watch",
     "start:dev": "NODE_ENV=development http-server ./dist -a localhost -c-1 -p 8080",
-    "test": "jest --coverage"
+    "test": "NODE_ENV=test jest --coverage"
   },
   "repository": {
     "type": "git",
