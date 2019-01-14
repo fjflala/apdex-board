@@ -1,5 +1,5 @@
 /**
- * 
+ * mapAppsByHost
  * @param {array} apps - Array of objects
  * @returns {object} - Map of hosts
  */
