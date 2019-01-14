@@ -24,7 +24,11 @@ export default function mapAppsByHost(apps) {
         apdex
       };
 
-      map[hostName] = map[hostName] ? [...map[hostName], data] : [data];
+      if (map[hostName]) {
+        map[hostName].push(data);
+      } else {
+        map[hostName] = [data];
+      }
     }
   }
   
