@@ -48,21 +48,22 @@ export default {
       element.appendChild(fragment);
     }
 
-    Object.keys(attr).forEach(prop => {
-      if (prop === 'className') {
-        element.setAttribute('class', attr[prop])
-      } else if(prop.startsWith('on')) {
-        const evt = prop.slice(2).toLowerCase();
-        element.removeEventListener(evt, attr[prop]);
-        element.addEventListener(evt, attr[prop]);
-        element.listeners = element.listeners ? 
-          [...element.listeners, { evt, cb: attr[prop]}] : 
-          [{ evt, cb: attr[prop]}];
-      } else {
-        element.setAttribute(prop, attr[prop]);
-      }
-    });
-  
+    if (attr) {
+      Object.keys(attr).forEach(prop => {
+        if (prop === 'className') {
+          element.setAttribute('class', attr[prop])
+        } else if(prop.startsWith('on')) {
+          const evt = prop.slice(2).toLowerCase();
+          element.removeEventListener(evt, attr[prop]);
+          element.addEventListener(evt, attr[prop]);
+          element.listeners = element.listeners ? 
+            [...element.listeners, { evt, cb: attr[prop]}] : 
+            [{ evt, cb: attr[prop]}];
+        } else {
+          element.setAttribute(prop, attr[prop]);
+        }
+      });
+    }
 
     return element;
   },
