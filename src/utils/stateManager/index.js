@@ -51,3 +51,8 @@ export default class StateManager {
     return this.state;
   }
 }
+
+/**
+ * Create new instance of StateManager
+ */
+export const stateManager = new StateManager();

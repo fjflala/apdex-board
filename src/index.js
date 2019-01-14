@@ -4,7 +4,7 @@
 import Service from './utils/service';
 import App from './components/App';
 import renderDOM from './utils/renderDom';
-import StateManager from './utils/stateManager';
+import { stateManager } from './utils/stateManager';
 import { REQUEST_SUCCESS, REMOVE_APP_FROM_HOST } from './utils/stateManager/actions';
 import Dom from './utils/dom';
 /**
@@ -21,11 +21,6 @@ import '@babel/polyfill';
  * Create new instance of Service
  */
 const service = new Service();
-
-/**
- * Create new instance of StateManager
- */
-export const stateManager = new StateManager();
 
 /*
  * Call getData method from service
