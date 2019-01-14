@@ -34,7 +34,6 @@ const cleanPlugin = new CleanWebpackPlugin(pathsToClean);
 /**
  * Styles config
  */
-
 const styleExtractPlugin = new ExtractTextPlugin({
   filename: 'main.css',
 });
