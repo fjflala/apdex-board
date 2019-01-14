@@ -5,7 +5,7 @@ import Service from './utils/service';
 import App from './components/App';
 import renderDOM from './utils/renderDom';
 import { stateManager } from './utils/stateManager';
-import { REQUEST_SUCCESS, REMOVE_APP_FROM_HOST } from './utils/stateManager/actions';
+import { REQUEST_SUCCESS } from './utils/stateManager/actions';
 import Dom from './utils/dom';
 /**
  * Import Styles
@@ -36,5 +36,5 @@ service.getData()
 /**
  * Expose data API (stateManager)
  */
-window.stateManager = stateManager;
+window.apdexBoardApp = App.prototype;
 
