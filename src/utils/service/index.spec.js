@@ -17,8 +17,11 @@ describe('Service util', () => {
   it('Should create a new instance of Service', () => {
     const service = new Service();
     expect(service).toBeInstanceOf(Service);
-    service.getData();
-    expect(sortByApdex).toHaveBeenCalled();
-    expect(mapAppsByHost).toHaveBeenCalled();
+    
+    service.getData().then(() => {
+      expect(sortByApdex).toHaveBeenCalled();
+      expect(mapAppsByHost).toHaveBeenCalled();
+    });
+    
   });
 });
