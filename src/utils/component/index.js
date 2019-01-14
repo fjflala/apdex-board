@@ -18,9 +18,13 @@ export default class Component {
   constructor(props, state) {
     this.state = state || {};
     this.props = props;
-     
+    
+    if (props && props.render && typeof props.render === 'function') {
+      this.render = props.render;
+    }
+
     if (!this.render && typeof this.render !== 'function') {
-      throw new Error('A component must have a render function');
+      throw new Error('Component must have a render function');
     } else {
       Component.render(this);
       this.componentDidMount();
