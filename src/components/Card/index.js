@@ -3,7 +3,7 @@
  */
 import Dom from '../../utils/dom';
 import Component from '../../utils/component';
-import { stateManager } from '../..';
+import { stateManager } from '../../utils/stateManager';
 import { REMOVE_APP_FROM_HOST } from '../../utils/stateManager/actions';
 
 /**
