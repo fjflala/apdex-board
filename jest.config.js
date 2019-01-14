@@ -5,6 +5,9 @@ module.exports = {
     "!**/node_modules/**",
     "!**/coverage/**",
     "!**/dist/**",
+    "!**/jest.config.js**",
+    "!**/webpack.config.js**",
+    "!**/src/index.js**",
   ],
   coverageDirectory: './coverage',
 };
