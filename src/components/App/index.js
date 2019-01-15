@@ -28,7 +28,11 @@ export default class App extends Component {
     stateManager.subscribe('app', (state) => {
       this.setState(state);
       this.forceUpdate();
-      document.getElementById('showList').checked = state.showList;
+      
+      const showGridEl = document.getElementById('showList');
+      if (showGridEl) {
+        showGridEl.checked = state.showList;
+      }
     });
   }
   

@@ -73,7 +73,7 @@ describe('StateManager util', () => {
     const callback = jest.fn();
     stateManager.subscribe('test', callback);
     
-    stateManager.dispatch(REMOVE_APP_FROM_HOST, { hostName: 'bar', name: 'foo' });
+    stateManager.dispatch(REMOVE_APP_FROM_HOST, { hosts: ['bar'], name: 'foo' });
     expect(callback).toHaveBeenCalled();
     expect(stateManager.getState().data.bar).toHaveLength(0);
   });

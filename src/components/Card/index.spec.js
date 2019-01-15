@@ -32,14 +32,4 @@ describe('Card component', () => {
     renderDom(<Card title="foo.host.com" data={data} />, target);
     expect(target.children[0].classList).toContain('ui-card');
   });
-
-  it('Should dispatch a event when removeAppFromHost is called', () => {
-    global.confirm = () => true;
-
-    const target = document.createElement('div');
-    renderDom(<Card title="foo.host.com" data={data} />, target);
-    expect(target.children[0].classList).toContain('ui-card');
-
-    Card.prototype.removeAppFromHost(data[0]);
-  });
 });
