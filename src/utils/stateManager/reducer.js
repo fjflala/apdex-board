@@ -10,6 +10,7 @@ export default function reducer(state = {}, eventName, payload) {
     case REQUEST_SUCCESS:
       return payload;
     case REMOVE_APP_FROM_HOST:
+      // Notation: O(n) 
       payload.hosts.forEach(hostName => {
         state.data[hostName] = state.data[hostName].filter(app => {
           return app.name !== payload.name;
@@ -17,6 +18,7 @@ export default function reducer(state = {}, eventName, payload) {
       });
       return state;
     case ADD_APP_TO_HOSTS:
+      // Notation: O(n)
       payload.hosts.forEach((hostName) => {        
         state.data[hostName].push(payload.app);
         state.data[hostName] = state.data[hostName].sort((a, b) => b.apdex - a.apdex);

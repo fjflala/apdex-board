@@ -7,7 +7,10 @@
   "scripts": {
     "watch": "NODE_ENV=development webpack --watch",
     "start:dev": "NODE_ENV=development http-server ./dist -a localhost -c-1 -p 8080",
-    "test": "NODE_ENV=test jest --coverage"
+    "test": "NODE_ENV=test jest --coverage",
+    "dist": "NODE_ENV=production webpack",
+    "predeploy": "NODE_ENV=production npm run dist",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -18,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/fjflala/apdex-board/issues"
   },
-  "homepage": "https://github.com/fjflala/apdex-board#readme",
+  "homepage": "https://fjflala.github.io/apdex-board",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/plugin-syntax-jsx": "^7.2.0",
@@ -33,6 +36,7 @@
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^2.1.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "gh-pages": "^2.0.1",
     "http-server": "^0.11.1",
     "jest": "^23.6.0",
     "node-sass": "^4.11.0",

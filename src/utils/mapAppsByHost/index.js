@@ -1,5 +1,5 @@
 /**
- * mapAppsByHost
+ * mapAppsByHost - Notation: O(n2)
  * @param {array} apps - Array of objects
  * @returns {object} - Map of hosts
  */
