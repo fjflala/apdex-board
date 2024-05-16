@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_fjflala_apdex_board_1715889884207-pr-trigger-input-set
+  identifier: Build_fjflala_apdex_board_1715889884207prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_fjflala_apdex_board_1715889884207
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
